@@ -1,12 +1,24 @@
 <!doctype html>
-<html>
-    <head>
-        <link href="css/main.css" rel="stylesheet">
-        <!-- build:js js/app.js -->
-        <script src="js/app.js"></script>
-        <!-- endbuild -->
-    </head>
-    <body>
-        <!-- CHROME EXTENSION POPUP -->
-    </body>
+<html data-ng-app="myApp" data-ng-csp="">
+  <head>
+    <meta charset="UTF-8">
+    <title>Presently</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div ng-controller="MainCtrl">
+        <!-- ... -->
+        <div id="datetime">
+          <h1>{{ date.raw | date: 'hh mm ss' }}</h1>
+          <h2>{{ date.raw | date: 'EEEE, MMMM yyyy' }}</h2>
+        </div>
+        <!-- ... -->
+      </div>
+    </div>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>

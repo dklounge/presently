@@ -1,5 +1,11 @@
-/* Will be compiled down to a single stylesheet with your sass files */
+#datetime {
+  text-align: center;
+}
 
-html {
-    /* Defaults css for cssmin process */
+#datetime h1 {
+  font-size: 6.1em;
+}
+
+#datetime h2 {
+  font-size: 1.9em;
 }
