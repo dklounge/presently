@@ -8,7 +8,9 @@
         "128": "images/icon-128.png"
     },
     "default_locale": "en",
-    "permissions": [],
+    "permissions": [
+        "http://api.wunderground.com/api/"
+    ],
     "background": {
         "scripts": ["js/vendor/angular.min.js"]
     },
