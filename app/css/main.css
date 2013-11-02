@@ -23,3 +23,13 @@
   font-size: 1.6em;
 }
 
+#actionbar {
+  position: absolute;
+  bottom: 0.5em;
+  right: 1.0em;
+}
+
+#actionbar a {
+  font-size: 2.2em;
+  color: #000;
+}

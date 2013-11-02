@@ -1,4 +1,4 @@
-angular.module('myApp', [])
+angular.module('myApp', ['ngRoute'])
 .provider('Weather', function () {
   var apiKey = "5380e57c137f0cef";
 
@@ -37,6 +37,19 @@ angular.module('myApp', [])
   WeatherProvider.setApiKey('5380e57c137f0cef')
 })
 
+.config(function ($routeProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: 'templates/home.html',
+      controller: 'MainCtrl'
+    })
+    .when('/settings', {
+      templateUrl: 'templates/settings.html',
+      controller: 'SettingsCtrl'
+    })
+    .otherwise({ redirectTo: '/' });
+})
+
 .controller('MainCtrl', function ($scope, $timeout, Weather) {
   // Build the date object
   $scope.date = {};
@@ -56,4 +69,9 @@ angular.module('myApp', [])
 
   // Kick off the update function
   updateTime();
-});
+})
+
+.controller('SettingsCtrl',
+  function ($scope) {
+
+  })
