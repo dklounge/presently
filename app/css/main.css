@@ -1,5 +1,4 @@
 body {
-  background-color: #eee;
   font-family: 'Actor', sans-serif;
   color: #444;
 }
@@ -21,12 +20,16 @@ body {
   text-align: center;
 }
 
-#forestcast ul li h3 {
-  font-size: 1.4em;
+#forecast ul li h3 {
+  font-size: 1.2em;
 }
 
 #forecast ul li .today h3 {
-  font-size: 1.6em;
+  font-size: 2.0em;
+}
+
+#forecast ul li .low h3 {
+  font-size: 0.7em;
 }
 
 #actionbar {

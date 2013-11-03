@@ -1,7 +1,7 @@
 angular.module('myApp', ['ngRoute'])
 .provider('Weather', function () {
   'use strict';
-  var apiKey = "5380e57c137f0cef";
+  var apiKey = "";
 
   this.getUrl = function (type, ext) {
     return "http://api.wunderground.com/api/" +
@@ -35,7 +35,7 @@ angular.module('myApp', ['ngRoute'])
         $http({
           method: 'GET',
           url: "http://autocomplete.wunderground.com/aq?query=" +
-                query
+              query
         }).success(function (data) {
           d.resolve(data.RESULTS);
         }).error(function (err) {
@@ -92,7 +92,8 @@ angular.module('myApp', ['ngRoute'])
     restrict: 'EA',
     scope: {
       autoFill: '&',
-      ngModel: '='
+      ngModel: '=',
+      timezone: '='
     },
     compile: function (tEle, tAttrs) {
       // Our compile function
@@ -106,6 +107,7 @@ angular.module('myApp', ['ngRoute'])
       var input = tplEl.find('input');
       input.attr('type', tAttrs.type);
       input.attr('ng-model', tAttrs.ngModel);
+      input.attr('timezone', tAttrs.timezone);
       tEle.replaceWith(tplEl);
 
       return function (scope, ele, attrs, ctrl) {
@@ -126,6 +128,7 @@ angular.module('myApp', ['ngRoute'])
                 if (data && data.length > 0) {
                   scope.reslist = data;
                   scope.ngModel = data[0].zmw;
+                  scope.timezone = data[0].tz;
                 }
               });
             }, 300);
@@ -146,7 +149,9 @@ angular.module('myApp', ['ngRoute'])
   $scope.date = {};
   // Update function
   var updateTime = function () {
-    $scope.date.raw = new Date();
+    $scope.date.tz = new Date(new Date().toLocaleString(
+      "en-US", { timeZone: $scope.user.timezone }
+      ));
     $timeout(updateTime, 1000);
   };
 
@@ -157,12 +162,13 @@ angular.module('myApp', ['ngRoute'])
   .then(function (data) {
     $scope.weather.forecast = data;
   });
+
   // Kick off the update function
   updateTime();
 })
 
 .controller('SettingsCtrl',
-  function ($scope, UserService, Weather) {
+  function ($scope, $location, UserService, Weather) {
     $scope.user = UserService.user;
 
     $scope.save = function () {
