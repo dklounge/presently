@@ -1,3 +1,9 @@
+body {
+  background-color: #eee;
+  font-family: 'Actor', sans-serif;
+  color: #444;
+}
+
 #datetime {
   text-align: center;
 }
@@ -32,4 +38,11 @@
 #actionbar a {
   font-size: 2.2em;
   color: #000;
+}
+
+.typehead ul {
+  max-height: 150px;
+  border: 1px solid #333;
+  padding: 3px;
+  overflow: auto;
 }

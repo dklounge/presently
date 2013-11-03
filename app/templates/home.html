@@ -10,12 +10,12 @@
     <!--pre>{{ weather.forecast | json }}</pre-->
     <ul class="row list-unstyled">
       <li ng-repeat="day in weather.forecast.forecastday" class="col-md-3">
-        <div ng-class="{today: $index == 0}">
+        <span ng-class="{today: $index == 0}">
           <img class="{{ day.icon }}" ng-src="{{ day.icon_url }}" />
           <h3>{{ day.high.fahrenheit }}</h3>
           <h4 ng-if="$index == 0">Now</h4>
           <h4 ng-if="$index != 0">{{ day.date.weekday }}</h4>
-        </div>
+        </span>
       </li>
     </ul>
   </div>
